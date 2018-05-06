@@ -3,13 +3,10 @@ import emoji
 
 with open('emoji-list.txt','r') as f:
     
-    for line in f:
-    
-        myemoji = (emoji.emojize(line))
-    
-        if ":" not in myemoji:
-            print(line, myemoji)
+    for e in map(emoji.emojize, f):
+        # If emojize does not find an emoji
+        # it will just return the :emoji: text.
+        if ":" not in e:
+            print(f.readline() + e)
         else:
-            print(line, "no emoji\n")
-        
-       
+            print("No emoji for " + e)
